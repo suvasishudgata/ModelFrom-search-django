@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+        <div class = "AcitvityUsers">
+            <form action='' method="GET">
+            {% for element in nameList %}
+                {% if element.name == name %}
+                    <p>{{ element.name }}</p>
+                    <p>{{ element.userId }}</p>
+                    <p>{{ element.timezone }}</p>
+                    <div class = "ActivityPeriods">
+                    {% for value in element.activityPeriods %}
+                        <p>{{ value }}</p>
+                    {% endfor %}
+                    </div>
+                {% endif %} 
+            {% endfor %}
+        </div>>
+    </body>
+</html>
+
+
