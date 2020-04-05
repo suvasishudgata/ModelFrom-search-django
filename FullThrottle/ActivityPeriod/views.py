@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 '''
-#Used to create dummy user data
+#Creating Dummy users via Faker
 for _ in range(0, 200):
     UserFactory.create()
 '''
@@ -44,6 +44,11 @@ activityPeriods =[
 names = User.objects.all()
 nameList = []
 
+#Creating Dummy Users Manually
+nameList.append({'name': "Egon Spengler", 'userId': "W012A3CDE",
+				'timezone': "America/Los_Angeles", 'activityPeriods':activityPeriods[0]})
+nameList.append({'name': "Glinda Southgood", 'userId': "W07QCRPA4",
+				'timezone': "Asia/Kolkata", 'activityPeriods':activityPeriods[1]})
 
 count = User.objects.count()
 
@@ -56,10 +61,12 @@ for name in names:
     else:
         nameList.append({'name':str(name), 'userId':str(name.userId), 
         'timezone':str(name.userTimeZone), 'activityPeriods':activityPeriods[1]})    
-    i = i + 1
+    i = i + 1   
 
-print(nameList)    
-        
+#Saving the data from database into a file
+with open('list_of_names.txt', "w") as output:
+	for element in range (0, len(nameList)):
+		output.write('%s\n' % str(nameList[element]))
 
 #Funtion to get the username from the form
 def getName(request):
@@ -70,8 +77,6 @@ def getName(request):
     return render(request, r'ActivityPeriod\home.html', {'form':form})
 
 #Funtion to display the user details
-@csrf_exempt
 def Users(request):
-    name = request.GET.get('name')
-    return render(request, r'ActivityPeriod\base.html', {'name':str(name), 
-                'nameList':nameList})
+	name =  request.GET.get('name')
+	return render(request, r'ActivityPeriod\base.html', {'name':str(name), 'nameList':nameList})
