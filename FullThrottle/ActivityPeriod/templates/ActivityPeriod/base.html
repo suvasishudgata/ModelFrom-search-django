@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--!DOCTYPE html>
 <html>
     <head>
         <title>
@@ -22,6 +22,57 @@
             {% endfor %}
         </div>>
     </body>
-</html>
+</html-->
 
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+        <style>
+        	body{
+        		margin: 0px !important;
+        	}
+        	.main {
+			    margin: auto;
+			    width: 400px;
+			    border: 1px solid #ccc;
+			    border-top: 2px solid #ccc;
+			    padding: 10px 30px 10px 20px;
+			    border-radius: 5px;
+			    box-shadow: 5px 5px 5px 4px #0000005c;
+    			background: #cad6d6;
+			}
+			p{
+				font-size: 20px;
+			}
+        </style>
+    </head>
+    <body>
+    <div class="" style="background:#2ea29c url(\ActivityPeriod\templates\ActivityPeriod\website-design-background.png); min-height: 750px; background-size: cover;" >
+		<div  style="padding-top:150px;">
+			<div class="main" align="center">
+			<p style="font-size: 28px;color: #FF8400;">User Details</p>
+		        <div class = "AcitvityUsers">
+		            <form action='' method="GET">
+		            {% for element in nameList %}
+		                {% if element.name == name %}
+		                    <p>{{ element.name }}</p>
+		                    <p>{{ element.userId }}</p>
+		                    <p>{{ element.timezone }}</p>
+		                    <div class = "ActivityPeriods">
+		                    {% for value in element.activityPeriods %}
+		                        <p>{{ value }}</p>
+		                    {% endfor %}
+		                    </div>
+		                {% endif %} 
+		            {% endfor %}
+		        </div>
+		    </div>
+	    </div>
+    </div>
+    </body>
+</html>
 
